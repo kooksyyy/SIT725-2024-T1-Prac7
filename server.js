@@ -12,11 +12,6 @@ app.use('/', router);
 
 var port = process.env.port || 3000;
 
-// const server = app.listen(port, () => {
-//     console.log("App listening to: " + port);
-// })
-// const io = require('socket.io')(server);
-
 http.listen(port, () => {
     console.log("App listening to: " + port);
 })
