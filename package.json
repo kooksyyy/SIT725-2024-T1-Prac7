@@ -22,7 +22,8 @@
     "mocha": "^4.1.0",
     "mongodb": "^6.5.0",
     "monodb": "^1.5.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "socket.io": "^4.7.5"
   },
   "devDependencies": {
     "chai": "^5.1.0"

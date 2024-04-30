@@ -1,8 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const { submitForm, getAllCards } = require("../controller/controller");
+var express = require("express");
+let router = express.Router();
+let controller = require('../controller/controller');
 
-router.post("/api/cards", submitForm);
-router.get("/api/cards", getAllCards);
+router.post('/api/cats', (req, res) => {
+    controller.createCat(req, res);
+});
+router.get('/api/cats', (req, res) => {
+    controller.getAllCats(req, res);
+});
+router.delete('/api/cats', (req, res) => {
+    controller.deleteCat(req, res);
+});
 
 module.exports = router;

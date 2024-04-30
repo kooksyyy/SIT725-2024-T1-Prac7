@@ -1,32 +1,16 @@
+let client = require('../dbconnection');
+let collection = client.db('test').collection('Cats');
 
-const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+function insertCat(cat, callback) {
+    collection.insertOne(cat, callback);
+}
 
-const uri = "mongodb+srv://kooksyyy:Pandapenguin13!@cluster13.aj1wlnp.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    depreciationErrors: true,
-  },
-});
+function getAllCats(callback) {
+    collection.find().toArray(callback);
+}
 
-const connectDB = async () => {
-  try {
-    await client.connect();
-    console.log("Connected to MongoDB!");
-    collection = client.db("database1").collection("Cat");
-  } catch (err) {
-    console.error(err);
-  }
-};
+function remove(cat, callback) {
+    collection.deleteOne(cat, callback);
+}
 
-const getAllCats = async () => {
-  const cursor = collection.find();
-  return await cursor.toArray();
-};
-
-const postCat = async (formData) => {
-  await collection.insertOne(formData);
-};
-
-module.exports = { connectDB, getAllCats, postCat };
+module.exports = { insertCat, getAllCats, remove };

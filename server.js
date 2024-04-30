@@ -1,22 +1,32 @@
-const express = require("express");
-const app = express();
-const bodyParser = require("body-parser");
-const { connectDB } = require("./model/model");
-const catRoutes = require("./route/router");
+var express = require("express");
+var app = express();
+require('./dbconnection');
+let router = require('./route/router');
+let http = require('http').createServer(app);
+let io = require('socket.io')(http);
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + '/public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use('/', router);
 
-app.use("/", catRoutes);
+var port = process.env.port || 3000;
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
-});
+// const server = app.listen(port, () => {
+//     console.log("App listening to: " + port);
+// })
+// const io = require('socket.io')(server);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  connectDB();
+http.listen(port, () => {
+    console.log("App listening to: " + port);
+})
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+    setInterval(() => {
+        socket.emit('number', parseInt(Math.random() * 10));
+    }, 1000);
 });
