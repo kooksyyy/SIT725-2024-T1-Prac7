@@ -1,0 +1,30 @@
+{
+  "name": "sit725-2024-t1-prac7",
+  "version": "1.0.0",
+  "description": "SIT725 Prac 7",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kooksyyy/SIT725-2024-T1-Prac7.git"
+  },
+  "author": "Krizza Lou Isidro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kooksyyy/SIT725-2024-T1-Prac7/issues"
+  },
+  "homepage": "https://github.com/kooksyyy/SIT725-2024-T1-Prac7#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mocha": "^4.1.0",
+    "mongodb": "^6.5.0",
+    "monodb": "^1.5.1",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "chai": "^5.1.0"
+  }
+}
